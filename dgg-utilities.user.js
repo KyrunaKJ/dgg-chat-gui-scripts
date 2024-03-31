@@ -106,6 +106,7 @@ let phrasesEtag = "";
 let nukes = [];
 let nukesCompiled = [];
 let mutelinks = false;
+let mutelinksUser = "";
 let foundPhraseOrNuke = false;
 
 let nukesTimestamp = 0;
@@ -2952,10 +2953,12 @@ function injectScript() {
       }
 
       if (MUTELINKS_PROVIDER === "vyneer" && mutelinks && config.colorOnMutelinks) {
-        for (let entry of mutelinksChecklist) {
-          if (text.indexOf(entry) != -1) {
-            resultLinks = true;
-            break;
+        if (text.indexOf(mutelinksUser) != -1) {
+          for (let entry of mutelinksChecklist) {
+            if (text.indexOf(entry) != -1) {
+              resultLinks = true;
+              break;
+            }
           }
         }
       }
@@ -3385,16 +3388,19 @@ function injectScript() {
           mutelinksTimestamp = parsedResponse.updatedAt;
           if (data[0] && data[0].status == "on") {
             mutelinks = true;
+            mutelinksUser = data[0].user.toLowerCase();
             linksAlertButton.style.display = "inline-flex";
             linksAlertButton.title = `Links mentioning ${data[0].user} WILL get you muted (${data[0].duration}).`;
             linksAlertButton_span.innerHTML = "on";
           } else if (data[0] && data[0].status == "all") {
             mutelinks = true;
+            mutelinksUser = "";
             linksAlertButton.style.display = "inline-flex";
             linksAlertButton.title = `ANY link WILL get you muted (${data[0].duration}).`;
             linksAlertButton_span.innerHTML = "all";
           } else if (data[0] && data[0].status == "off") {
             mutelinks = false;
+            mutelinksUser = "";
             if (linksAlertButton.style.display != "none") {
               linksAlertButton.style.display = "none";
               linksAlertButton.title = "Mutelinks";
