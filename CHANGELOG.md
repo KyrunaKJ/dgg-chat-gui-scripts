@@ -7,8 +7,17 @@ and this project adheres/tries to adhere to [Semantic Versioning].
 
 ## [Unreleased]
 
+- Improve message filtering with mutelinks mode on
+- Fix `undefined` appearing in place of Twitch embeds with certain options selected
+
+## [1.9] - 2024-03-01
+
+### Added
 - Add native embeds support
 - Pull data platforms from vyneer.me (eliminates the need for updates when native phrases/nukes/mutelinks get added)
+
+### Fixed
+
 - Fix a nuke detection bug
 
 ## [1.8] - 2023-06-17
