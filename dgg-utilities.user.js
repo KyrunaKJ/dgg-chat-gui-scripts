@@ -2314,7 +2314,6 @@ function injectScript() {
     settingsArea.appendChild(editEmbedsGroup);
   }
   if (EMBEDS_PROVIDER === "native") {
-    settingsArea.appendChild(twitchEmbedFormatGroup);
     settingsArea.appendChild(youtubeEmbedFormatGroup);
     settingsArea.appendChild(rumbleEmbedFormatGroup);
   }
@@ -2399,8 +2398,8 @@ function injectScript() {
                   ')</a> <a class="externallink bookmarklink" href="' +
                   source +
                   '" target ="_blank">(source)</a>';
+                break;
               }
-              break;
             default:
               replacerString =
                 '$1<a class="externallink bookmarklink" href="' +
