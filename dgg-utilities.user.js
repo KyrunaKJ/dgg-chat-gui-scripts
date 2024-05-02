@@ -313,7 +313,7 @@ function injectScript() {
   let livePill = undefined;
   try {
     livePill = !window.parent.location.href.includes("embed")
-    ? window.parent.document.querySelector("#embed-name")
+    ? window.parent.document.querySelector("#embed-type")
     : undefined
   } catch (e) {
     console.warn(`[WARNING] [dgg-utils] script might be running in cross-origin frame, can't get the live pill, the "change title on live" feature wont work - ${e}`);
@@ -1911,7 +1911,7 @@ function injectScript() {
 
   // modify the styling of the pill to accommadate any longer youtube channels with spaces in the names
   if (livePill != undefined) {
-    window.parent.document.getElementById("host-pill-name").style.whiteSpace = 'nowrap';
+    window.parent.document.getElementById("embed-type").style.whiteSpace = 'nowrap';
   }
 
   let editEmbedPillGroup = document.createElement("div");
